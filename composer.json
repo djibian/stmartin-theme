@@ -1,0 +1,23 @@
+{
+    "name": "djibian/stmartin-theme",
+
+    "description": "Storefront Child theme for saint martin high school e-commerce website",
+
+    "type": "wordpress-theme",
+
+    "keywords": ["school", "storefront", "commerce"],
+
+    "license": "GPL-3.0-or-later",
+
+    "authors": [
+
+        {
+
+            "name": "Emmanuel BLANCHARD",
+
+            "email": "emmanuel.blanchard@retzien.fr"
+
+        }
+
+    ]
+}
