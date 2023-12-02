@@ -89,7 +89,7 @@ function stmartin_add_product_meta () {
 add_filter( 'woocommerce_checkout_fields', 'wc_change_order_comments_placeholder' );
 function wc_change_order_comments_placeholder($fields){
 	$fields['order']['order_comments']['placeholder'] = esc_attr__(
-		'Exemple : Ma fille Eléonore DUPONT 1SAPAT2 retirera ma commande pour moi',
+		'Example: My daughter Eléonore DUPONT 1SAPAT2 will collect my order for me',
 		'stmartin'
 	);
 	return $fields;
