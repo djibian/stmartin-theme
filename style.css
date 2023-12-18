@@ -820,21 +820,3 @@ body:not(.home) #hero{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
-
-
-/* Mise en forme de l'indication "sur commande" */
-.oncommandonly {
-    position: absolute;
-    background-color: var(--color-yellow);
-    color: white;
-    font-weight: 600;
-    padding: .202em .6180469716em;
-    line-height: 1.618;
-    top: .875em;
-    right: .875em;
-    display: block;
-    height: 2em;
-    border-radius: 30px;
-    z-index: 99;
-    text-align: center;
-  }
