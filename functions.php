@@ -232,4 +232,44 @@ function stmartin_add_price_per_unitofmeasure() {
  * Product page tabs.
  * Pour supprimer l'affichage des onglets (description et info complémentaires) dans la fiche produit
  */
-remove_filter( 'woocommerce_product_tabs', 'woocommerce_default_product_tabs' );
+/*remove_filter( 'woocommerce_product_tabs', 'woocommerce_default_product_tabs' );*/
+
+
+/*
+ * Remonter l'indication de promotion 
+ */
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 6 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
+
+/*
+ * Afficher le pourcentage de réduction des promotions WooCommerce
+ */
+add_filter('woocommerce_sale_flash', 'stmartin_display_sale_percentage', 10, 3);
+function stmartin_display_sale_percentage($html, $post, $product) {
+	$percentage = '';
+	if ( $product->is_type( 'simple' ) ) {
+		$percentage = ( ( $product->get_regular_price() - $product->get_sale_price() ) / $product->get_regular_price() ) * 100;
+	} elseif ( $product->is_type( 'variable' ) ) {
+        $max_percentage = 0;
+        foreach ( $product->get_children() as $child_id ) {
+           $variation = wc_get_product( $child_id );
+           $price = $variation->get_regular_price();
+           $sale = $variation->get_sale_price();
+           if ( $price != 0 && ! empty( $sale ) ) {
+            $percentage = ( $price - $sale ) / $price * 100;
+           }
+           else {
+            return $html;
+           }
+           if ($max_percentage != 0) {
+                if ($max_percentage != $percentage) {
+                    return $html;
+                }
+            }
+            else {
+                $max_percentage = $percentage;
+            }
+        }
+     }
+	return '<span class="onsale">' . esc_html__( 'Sale', 'woocommerce' ) . ' -' . round($percentage) . '%</span>';
+}
