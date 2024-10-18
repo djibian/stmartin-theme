@@ -247,8 +247,13 @@ add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product
 add_filter('woocommerce_sale_flash', 'stmartin_display_sale_percentage', 10, 3);
 function stmartin_display_sale_percentage($html, $post, $product) {
 	$percentage = '';
-	if ( $product->is_type( 'simple' ) ) {
-		$percentage = ( ( $product->get_regular_price() - $product->get_sale_price() ) / $product->get_regular_price() ) * 100;
+	if ($product->is_type('simple')) {
+        $regular_price = $product->get_regular_price();
+        $sale_price = $product->get_sale_price();
+
+        if ($regular_price > 0 && $sale_price > 0) {
+            $percentage = (($regular_price - $sale_price) / $regular_price) * 100;
+        }
 	} elseif ( $product->is_type( 'variable' ) ) {
         $max_percentage = 0;
         foreach ( $product->get_children() as $child_id ) {
@@ -272,4 +277,20 @@ function stmartin_display_sale_percentage($html, $post, $product) {
         }
      }
 	return '<span class="onsale">' . esc_html__( 'Sale', 'woocommerce' ) . ' -' . round($percentage) . '%</span>';
+}
+
+
+
+/*
+ * Ajouter dans la fiche produit au niveau des meta-données (avant la catégorie)
+ * -- le nom du fournisseur avec un lien vers la fiche de ce producteur local
+ */
+add_action( 'woocommerce_product_meta_start', 'add_producer_meta' ,10);
+function add_producer_meta () {
+	global $product,$post;
+
+	$producer_id = get_post_meta($product->get_id(), 'provider', true);
+	if ($producer_id != '') {
+		echo '<span class="posted_in">Producteur: <a href="' . get_permalink($producer_id) . '">' . get_post($producer_id)->post_title . '</a></span>';
+	}
 }

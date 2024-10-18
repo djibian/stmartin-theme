@@ -820,3 +820,105 @@ body:not(.home) #hero{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+
+
+
+
+/*
+ * Formatage de la page producteur
+ */
+ #secondary .producer-identity-photo {
+    width: 100%;
+    border-radius   : 50%;
+    /*box-shadow      : 0px 0px 5px var(--couleur-ombre);*/
+    border          : solid 5px var(--marron-logo);
+}
+#secondary .producer-city {
+    color: var(--color-blue);
+    text-align: center;
+    padding-top: 10px;
+}
+.producer-name {
+    text-align: center;
+}
+.producer-job {
+    color: var(--color-blue);
+    padding: 10px;
+    text-align: center;
+}
+.dash{
+    margin-left: auto;
+    margin-right: auto;
+    border-top: solid 5px var(--color-light-brown);
+    width: 20%;
+    height: 0px;
+}
+
+@media screen and (max-width: 768px) {
+        #secondary {
+            display: none;
+        }
+        .entry-header .producer-identity-photo {
+            border-radius: 50%;
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            display: block; /* Assurer que l'image soit un bloc centré */
+        }
+        .entry-header .producer-city {
+            color: var(--color-blue);
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        body.single-producer #primary {
+            position: relative;
+            width: 100%;
+            padding: 20px; /* Espacement intérieur */
+            background-color: white;
+            box-sizing: border-box; /* Inclut le padding dans la largeur */
+        }
+
+}
+    
+    
+@media screen and (min-width: 768px) {
+    .entry-header .producer-identity-photo,
+    .entry-header .producer-city {
+        display: none;
+    }
+
+    body.single-producer .site{
+        overflow-x: visible; /* Pour permettre le positionnement sticky du bloc #secondary */
+    }
+
+    body.single-producer #secondary {
+        float: left; /* Aligne le bloc secondaire à gauche */
+        width: 25%; /* Le bloc secondaire occupe 25% de l'espace */
+        position: sticky; /* Reste visible lors du défilement */
+        top: 80px; /* Ajuste cette valeur selon la hauteur de l'entête */
+        padding: 20px; /* Espace intérieur */
+        background-color: white;
+        border-right: 1px solid #ddd; /* Séparation visuelle */
+        box-sizing: border-box; /* Inclut le padding dans la largeur */
+    }
+    
+    /* Section principale à droite */
+    body.single-producer #primary {
+        float: right; /* Aligne le bloc principal à droite */
+        width: 75%; /* Le bloc principal occupe le reste de l'espace */
+        padding: 20px; /* Espacement intérieur */
+        background-color: white;
+        box-sizing: border-box; /* Inclut le padding dans la largeur */
+    }
+    
+    /* Clearfix pour éviter les problèmes de float */
+    body.single-producer .col-full::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+    

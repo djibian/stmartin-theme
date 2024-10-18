@@ -55,7 +55,7 @@ menuItems.forEach(menuItem => {
   var masthead = document.querySelector('#masthead');
   var sticky = navbar.offsetTop + navbar.clientHeight;
 
-  window.onscroll = function() {
+  window.addEventListener('scroll', function() {
     if (window.scrollY >= sticky && document.documentElement.clientHeight >= menuHeight) {
       navbar.classList.add("sticky");
       masthead.classList.add("stickymasthead");
@@ -63,7 +63,7 @@ menuItems.forEach(menuItem => {
       navbar.classList.remove("sticky");
       masthead.classList.remove("stickymasthead");
     }
-  }
+  });
 
   /*
   * initialise la taille de la page
@@ -78,4 +78,26 @@ menuItems.forEach(menuItem => {
     }
   });
 
+
+  /* Dans le menu mobile, remplacer l'action sur les catégories de produits par l'ouverture des sous-catégories */
+  const handheld = document.getElementsByClassName('handheld-navigation');
+
+  if ( handheld.length > 0 ) {
+    [].forEach.call(
+      handheld[ 0 ].querySelectorAll('.menu-item-has-children > a, .page_item_has_children > a'),
+      function ( anchor ) {
+        anchor.removeAttribute('href');
+        anchor.setAttribute('role','link');
+        anchor.setAttribute('aria-disabled','true');
+
+        // Add event listener
+        anchor.addEventListener( 'click', function () {
+          anchor.nextSibling.click();
+        } );
+      }
+    );
+  }
+
+
+  
 });
