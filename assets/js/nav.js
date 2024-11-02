@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 /*
  * Ajout d'un element div de classe .soulignement sous chaque item du menu principal
  */
-var menuItems = Array.from(document.querySelectorAll('.primary-navigation #menu-menu_principal > li'));
+var menuItems = Array.from(document.querySelectorAll('.primary-navigation .menu > li'));
 menuItems.forEach(menuItem => {
       var divSoulignement = document.createElement('div');
       divSoulignement.classList.add('soulignement');

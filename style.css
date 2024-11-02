@@ -431,7 +431,7 @@ button.menu-toggle::before, button.menu-toggle span::before, button.menu-toggle:
 button.menu-toggle:hover::before, button.menu-toggle:hover span::before, button.menu-toggle:hover::after {
     background-color: var(--color-light-brown) !important;
 }
-#menu-menu_mobile li a, .handheld-navigation .dropdown-toggle {
+.handheld-navigation .menu li a, .handheld-navigation .dropdown-toggle {
     color: white;
     font-weight: 600;
 }
@@ -530,12 +530,12 @@ button.menu-toggle:hover::before, button.menu-toggle:hover span::before, button.
 /*
  * Formatage des liens dans l'entête
  */
-.storefront-primary-navigation:not(.sticky) .main-navigation ul#menu-menu_principal > li > a,
+.storefront-primary-navigation:not(.sticky) .main-navigation ul.menu > li > a,
 .site-header:not(.stickymasthead) .secondary-navigation ul.menu a,
 .storefront-primary-navigation:not(.sticky) .site-header-cart > li:first-child a {
     color: white !important;
 }
-.storefront-primary-navigation .main-navigation ul#menu-menu_principal > li > a,
+.storefront-primary-navigation .main-navigation ul.menu > li > a,
 .site-header .secondary-navigation ul.menu a,
 .storefront-primary-navigation .site-header-cart > li:first-child a {
     font-weight: 600;
